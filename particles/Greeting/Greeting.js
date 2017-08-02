@@ -9,8 +9,8 @@
 "use strict";
 
 // Greeting defines a particle that displays "You're an {{animal}}" for a
-// person. The animal is chosen based on the first letter of the person's
-// name.
+// given Person entity. The animal is chosen based on the first letter of
+// the person's name.
 defineParticle(({DomParticle}) => {
 
   let template = `
@@ -39,10 +39,10 @@ defineParticle(({DomParticle}) => {
       return template;
     }
 
-    // Render gets called whenever props change or _setState() gets called.
+    // _render() gets called whenever props change or _setState() gets called.
     // Rather than copying the name into the particle's state (as in
     // HelloWorld.js) we skip that step and render the name from the props
-    // directly to keep things simpler.
+    // directly to keep the particle code simpler.
     _render(props, state) {
       if (props.person && props.person.name.length) {
         let name = props.person.name;
