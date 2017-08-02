@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Arcs: Hello, World! Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      background-image: url(../assets/linen.png);
+    }
+    demo-flow {
+      flex: 1;
+      max-width: 414px;
+      max-height: 736px;
+      background-color: white;
+    }
+  </style>
+  <!-- Include the Arcs runtime library. -->
+  <script src="../lib/arcs.js"></script>
+  <!-- Includes the Worker entry point that will run the isolated particles. -->
+  <script src="../lib/worker-entry.js"></script>
+  <!-- Import the HelloWorld recipe description. Will change with the new manifest format. -->
+  <script src="../recipes/hello-world.js"></script>
+</head>
+<body>
+  <demo-flow></demo-flow>
+  <script src="demo.js"></script>
+</body>
