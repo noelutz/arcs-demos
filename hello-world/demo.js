@@ -17,8 +17,11 @@ const {
   workerPecFactory,
 } = window.Arcs;
 
+// Helper function that sets up the Arcs context for the Hello World! demo.
+// Eventually, we should generalize this a bit to make demo.js more generic
+// and usable across other demos.
 function ContextFactory({ loader, pecFactory, slotComposer }) {
-  // Some Arc that provides the peron entity. This could be a system
+  // Some Arc that provides the person entity. This could be a system
   // Arc or a page that reveals the user's identity.
   let pageArc = new Arc({ loader, id: 'pageArc' });
   let Person = loader.loadEntity('Person');
@@ -79,7 +82,10 @@ class DemoFlow extends DemoBase {
       slotComposer: new SlotComposer(this.$('[particle-container]'))
     });
     this.arc = arc;
-    // This demo has a single stage.
+    // For now demos may have multiple stages describing a series of recipes
+    // that should be run serially. The notion of stages will go away soon
+    // once recipes can propose follow-up recipes. Right now this demo
+    // has a single stage and recipe..
     this.stages = [{ recipes: [window.recipes.helloWorld] }];
     this.suggestions = this.$('suggestions-element');
     this.suggestions.arc = arc;

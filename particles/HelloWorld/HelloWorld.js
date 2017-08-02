@@ -15,7 +15,7 @@ defineParticle(({DomParticle}) => {
   // Specifies the DOM template to be used when the rendering function
   // is called on the HelloWorld particle. The template syntax is similar
   // to the one used by web component templates.
-  let template = `
+  const template = `
     <style>
       [hello] {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -63,7 +63,7 @@ defineParticle(({DomParticle}) => {
     // of the person to greet. If nothing is returned the particle will not
     // occupy any slot and will not be rendered at all.
     _render(props, state) {
-      if (state.name && state.name.length) {
+      if (state.name) {
       	return {
       	  name: state.name
       	};

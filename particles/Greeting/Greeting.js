@@ -11,9 +11,9 @@
 // Greeting defines a particle that displays "You're an {{animal}}" for a
 // given Person entity. The animal is chosen based on the first letter of
 // the person's name.
-defineParticle(({DomParticle}) => {
+defineParticle(({ DomParticle }) => {
 
-  let template = `
+  const template = `
     <style>
       [greeting] {
         background-color: #FFF176;
@@ -22,7 +22,7 @@ defineParticle(({DomParticle}) => {
     <span greeting>You're <span>{{prefix}}</span>&nbsp;<span>{{animal}}</span>!</span>
   `.trim();
 
-  let animals = {
+  const animals = {
     'A': 'alligator',
     'B': 'bear',
     'C': 'cat',
@@ -32,7 +32,7 @@ defineParticle(({DomParticle}) => {
     '': 'alian',
   };
 
-  let vowels = ['a', 'e', 'i', 'o', 'u'];
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
 
   return class extends DomParticle {
     get template() {
@@ -44,14 +44,14 @@ defineParticle(({DomParticle}) => {
     // HelloWorld.js) we skip that step and render the name from the props
     // directly to keep the particle code simpler.
     _render(props, state) {
-      if (props.person && props.person.name.length) {
-        let name = props.person.name;
-        let animal = animals[name.toUpperCase()[0]] || animals[''];
-      	return {
+      if (props.person && props.person.name) {
+        const name = props.person.name;
+        const animal = animals[name.toUpperCase()[0]] || animals[''];
+        return {
           name: name,
           animal: animal,
           prefix: vowels.includes(animal[0]) ? 'an' : 'a'
-      	};
+        };
       }
     }
   };
