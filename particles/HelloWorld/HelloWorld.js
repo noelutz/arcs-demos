@@ -8,9 +8,12 @@
 
 "use strict";
 
-// Defines a simple particle that outputs a single "Hello, World!" message.
+// Defines and registers a simple particle that outputs a single "Hello, World!"
+// message.
 defineParticle(({Particle}) => {
-  return class extends Particle {
+  return class HelloWorld extends Particle {
+    // Called once the particle is setup and the input and output views are
+    // bound to actual views in the current Arc.
     setViews(views) {
       // Retrieves the class for the output view and creates an instance of that
       // type with the message "Hello, World!".
