@@ -28,16 +28,14 @@ defineParticle(({DomParticle}) => {
       <!-- Basic variable substitution where {{message}} will be replaced
            by the value associated with 'message' when the particle is
            rendered. Note that the span is necessary here because (for now)
-           variable substitution only works if the variable is a
-           lonely child of an element. -->
-      <div>
-        <span>{{message}}</span>!
-        <!-- Defines where and how the 'customgreeting' slot should be rendered
-             in the Greet particle DOM. Another particle may render content
-             into that slot. In our demo, the PersonalGreet particle
-             is rendering something into that slot. -->
-        <span slotid="customgreeting"></span>
-      </div>
+           variable substitution only works if the variable is the only
+           child of an element. -->
+      <span>{{message}}</span>!
+      <!-- Defines where and how the 'customgreeting' slot should be rendered
+           in the Greet particle DOM. Any other particle can render content
+           into that slot. In the case of our demo, the PersonalGreet
+           particle is rendering something into that slot. -->
+      <div slotid="customgreeting"></div>
     </div>
   `.trim();
 
