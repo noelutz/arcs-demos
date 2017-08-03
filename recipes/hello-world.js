@@ -22,16 +22,16 @@ window.recipes.helloWorld = {
       }
     },
     {
+      name: "PersonalGreet",
+      constrain: {
+        "person": "person"
+      }
+    },
+    {
       name: "Choose",
       constrain: {
         "singleton": "person"
       }
     },
-    {
-      name: "PersonalGreet",
-      constrain: {
-        "person": "person"
-      }
-    }
   ]
 };
