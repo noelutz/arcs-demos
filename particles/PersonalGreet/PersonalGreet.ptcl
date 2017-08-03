@@ -8,10 +8,10 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-Greeting(in Person person)
+PersonalGreet(in Person person)
 
-renders: greeting none-need
+renders: customgreeting none-need
 
 Description {
-  pattern: Greetings to ${person}
+  pattern: Greetings ${person}
 }

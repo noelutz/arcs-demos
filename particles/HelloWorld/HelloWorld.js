@@ -8,66 +8,14 @@
 
 "use strict";
 
-// Defines the HelloWorld particle in-line. Every DOM particle
-// needs to call the defineParticle function to register itself.
-defineParticle(({DomParticle}) => {
-
-  // Specifies the DOM template to be used when the rendering function
-  // is called on the HelloWorld particle. The template syntax is similar
-  // to the one used by web component templates.
-  const template = `
-    <style>
-      [hello] {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        background-color: #AED581;
-        padding: 20px;
-      }
-    </style>
-    <div hello>
-      <!-- Basic variable substitution where {{name}} will be replaced
-           by the value associated with 'name' when the particle is
-           rendered. Note that the span is necessary here because (for now)
-           variable substitution only works if the variable is a
-           lonely child of an element. -->
-      <div>
-        Hello, World! Hello,
-        <span>{{name}}</span>!
-        <!-- Defines where and how the 'greeting' slot should be rendered
-             in the HelloWorld particle DOM. Another particle may render
-             content into that slot. In our demo, the Greeting particle
-             is rendering something into that slot. -->
-        <span slotid="greeting"></span>
-      </div>
-    </div>
-  `.trim();
-
-  // Defines the HelloWorld particle as a sub-class of DomParticle.
-  // HelloWorld may be speculatively instantiated by Arcs and will
-  // (definitely) be instantiated when the user picks the Hello World
-  // suggestion.
-  return class extends DomParticle {
-    get template() {
-      return template;
+// Defines a simple particle that outputs a single "Hello, World!" message.
+defineParticle(({Particle}) => {
+  return class extends Particle {
+    setViews(views) {
+      // Retrieves the class for the output view and creates an instance of that
+      // type with the message "Hello, World!".
+      const Message = views.get('hello').entityClass;
+      views.get('hello').set(new Message({message: "Hello, World!"}));
     }
-    _willReceiveProps(props) {
-      // Copies the person's name from the input view (i.e., particle input
-      // parameter) to the particle's internal state.
-      if (props.person) {
-        this._setState({ name: props.person.name });
-      }
-    }
-    // Main rendering function called whenever the state of the particle changes.
-    // Returns the dictionary that is used to do variable substitution in the
-    // template above. In our case it specifies a single variable with the name
-    // of the person to greet. If nothing is returned the particle will not
-    // occupy any slot and will not be rendered at all.
-    _render(props, state) {
-      if (state.name) {
-      	return {
-      	  name: state.name
-      	};
-      }
-    }
-  };
+  }
 });
