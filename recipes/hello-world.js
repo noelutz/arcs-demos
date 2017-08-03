@@ -1,16 +1,28 @@
 window.recipes = window.recipes || {};
 
 window.recipes.helloWorld = {
-  name: "Hello, World! Hello, you!",
+  name: "Hello, World!",
   particles: [
     {
-      name: "Greeting",
+      name: "Create",
       constrain: {
-        "person": "person"
+        "newMsg": "msg"
       }
     },
     {
       name: "HelloWorld",
+      constrain: {
+        "hello": "msg"
+      }
+    },
+    {
+      name: "Greet",
+      constrain: {
+        "message": "msg"
+      }
+    },
+    {
+      name: "PersonalGreet",
       constrain: {
         "person": "person"
       }
@@ -20,6 +32,6 @@ window.recipes.helloWorld = {
       constrain: {
         "singleton": "person"
       }
-    }
+    },
   ]
 };

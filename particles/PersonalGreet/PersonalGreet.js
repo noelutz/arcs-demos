@@ -8,18 +8,23 @@
 
 "use strict";
 
-// Greeting defines a particle that displays "You're an {{animal}}" for a
-// given Person entity. The animal is chosen based on the first letter of
-// the person's name.
+// PersonalGreet defines a particle that displays a more personal greeting
+// message than simply "Hello, World!". It displays "Hi {{name}}, you're an
+// {{animal}}" for a given Person entity. The animal is chosen based on the
+// first letter of the person's name.
 defineParticle(({ DomParticle }) => {
 
   const template = `
     <style>
       [greeting] {
         background-color: #FFF176;
+        width: 50%;
+        height: 100px;
+        margin: 20px;
+        padding: 10px;
       }
     </style>
-    <span greeting>You're <span>{{prefix}}</span>&nbsp;<span>{{animal}}</span>!</span>
+    <div greeting>Hi <span>{{name}}</span>, you're <span>{{prefix}}</span>&nbsp;<span>{{animal}}</span>!</div>
   `.trim();
 
   const animals = {
@@ -41,7 +46,7 @@ defineParticle(({ DomParticle }) => {
 
     // _render() gets called whenever props change or _setState() gets called.
     // Rather than copying the name into the particle's state (as in
-    // HelloWorld.js) we skip that step and render the name from the props
+    // Greet.js) we skip that step and render the name from the props
     // directly to keep the particle code simpler.
     _render(props, state) {
       if (props.person && props.person.name) {

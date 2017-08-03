@@ -8,8 +8,11 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-HelloWorld(out Message hello)
+Greet(in Message message)
+
+renders: root none-need
+exposes: customgreeting
 
 Description {
-  pattern: Hello World
+  pattern: Hello
 }

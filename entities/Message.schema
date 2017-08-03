@@ -1,0 +1,4 @@
+schema Message {
+  optional:
+    Text message;
+}
