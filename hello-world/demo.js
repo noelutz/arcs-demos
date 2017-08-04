@@ -21,19 +21,18 @@ const {
 // Eventually, we should generalize this a bit to make demo.js more generic
 // and usable across other demos.
 function ContextFactory({ loader, pecFactory, slotComposer }) {
-  // Some Arc that provides the person entity. This could be a system
-  // Arc or a page that reveals the user's identity.
-  let pageArc = new Arc({ loader, id: 'pageArc' });
-  let Person = loader.loadEntity('Person');
-  // TODO(sjmiles): empirically, views must exist before committing Entities
-  let personView = pageArc.createView(Person.type.viewOf(), 'peopleFromWebpage');
-  // Commit a single Person entity to the arc.
-  pageArc.commit([new Person({name: "Claire"})]);
-  // Main Arc that represents the demo.
+  // We create a single Arc that contains a Person entity named "Claire" and
+  // eventually our sole demo recipe.
   let arc = new Arc({ id: 'demo', loader, pecFactory, slotComposer });
+  let Person = loader.loadEntity('Person');
+  // TODO(sjmiles): empirically, views must exist before committing Entities.
+  let personView = arc.createView(Person.type.viewOf(), 'peopleFromWebpage');
+  // Commit a single Person entity to the arc.
+  arc.commit([new Person({name: "Claire"})]);
   arc.createView(Person.type, 'personSlot');
   arc.mapView(personView);
-  // TODO(sjmiles): boilerplate? not needed until we are rendering particles (arc not pageArc)?
+  // TODO(sjmiles): boilerplate? not needed until we are rendering particles
+  // s(arc not pageArc)?
   systemParticles.register(loader);
   return arc;
 }
@@ -82,10 +81,11 @@ class DemoFlow extends DemoBase {
       slotComposer: new SlotComposer(this.$('[particle-container]'))
     });
     this.arc = arc;
+
     // For now demos may have multiple stages describing a series of recipes
     // that should be run serially. The notion of stages will go away soon
     // once recipes can propose follow-up recipes. Right now this demo
-    // has a single stage and recipe..
+    // has a single stage and recipe.
     this.stages = [{ recipes: [window.recipes.helloWorld] }];
     this.suggestions = this.$('suggestions-element');
     this.suggestions.arc = arc;
